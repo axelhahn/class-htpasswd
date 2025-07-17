@@ -1,4 +1,23 @@
 <?php
+/**
+ * ======================================================================
+ * 
+ * PHP class to handle htaccess file
+ * 
+ * After setting a htpasswd file you can
+ * - add - a user and password
+ * - update - a user and password
+ * - remove - a user
+ * - verify - a password of an existing user
+ * - check - if a given user exists
+ * 
+ * @author www.axel-hahn.de
+ * @license GNU Public License 3.0
+ * 
+ * ----------------------------------------------------------------------
+ * 2025-07.18  initial version
+ * ======================================================================
+ */
 
 class htpasswd
 {
