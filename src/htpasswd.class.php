@@ -6,16 +6,17 @@
  * 
  * After setting a htpasswd file you can
  * - add - a user and password
- * - update - a user and password
+ * - update - a user and password - optional after verifying the current password
  * - remove - a user
  * - verify - a password of an existing user
  * - check - if a given user exists
  * 
  * @author www.axel-hahn.de
  * @license GNU Public License 3.0
+ * @source https://github.com/axelhahn/class-htpasswd/
  * 
  * ----------------------------------------------------------------------
- * 2025-07.18  initial version
+ * 2025-07-18  initial version
  * ======================================================================
  */
 
@@ -175,10 +176,14 @@ class htpasswd
     }
 
     /**
-     * Add a new user in htaccess file
+     * Add a new user in htaccess file.
+     * It returns true if successful.
+     * It returns false
+     * - if user already exists
+     * - writing .htpasswd file failed
      * 
      * @param string $sUser      username to add
-     * @param string $sPassword  password
+     * @param string $sPassword  password to encrypt
      * @return bool
      */
     public function add(string $sUser, string $sPassword):bool
@@ -198,8 +203,10 @@ class htpasswd
 
     /**
      * Check if a given username exists
+     * It returns true if successful.
+     * It returns false if the user does not exist.
      * 
-     * @param string $sUser      username
+     * @param string $sUser      username to search for
      * @return bool
      */
     public function exists(string $sUser):bool
@@ -209,7 +216,24 @@ class htpasswd
     }
 
     /**
+     * List all users as array.
+     * You get the <username> as key. The value is a hash with key "pwhash"
+     * 
+     * @return array
+     */
+    public function list():array
+    {
+        $this->_wd(__METHOD__."()");
+        return $this->aItems;
+    }
+
+    /**
      * Remove an existing user
+     * It returns true if successful.
+     * It returns false
+     * - if user doesn't exist
+     * - writing .htpasswd file failed
+     * 
      * @param string $sUser      username to remove
      * @return bool
      */
@@ -227,6 +251,11 @@ class htpasswd
  
     /**
      * Update password of an existing user
+     * It returns true if successful.
+     * It returns false
+     * - if user doesn't exist
+     * - if given old password doesn't match (old password is optional)
+     * - writing .htpasswd file failed
      * 
      * @param string $sUser         username to update
      * @param string $sPassword     password
@@ -261,6 +290,10 @@ class htpasswd
 
     /**
      * Verify password of an existing user
+     * It returns true if successful.
+     * It returns false
+     * - if user doens't exist
+     * - given password doesn't match
      * 
      * @param string $sUser         username to check
      * @param string $sPassword     password to verify
