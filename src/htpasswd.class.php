@@ -3,6 +3,7 @@
  * ======================================================================
  * 
  * PHP class to handle htpasswd file
+ * https://wiki.selfhtml.org/wiki/Webserver/htaccess/Zugriffskontrolle
  * 
  * After setting a htpasswd file you can
  * - add - a user and password
@@ -157,6 +158,8 @@ class htpasswd
             $this->_wd(__METHOD__.": file exists");
             $this->sHtPasswdFile = $sHtPasswdFile;
             $this->_readFile();
+        } else {
+            $this->_wd(__METHOD__.": This is the same file that is already loaded.");
         }
     }
 
