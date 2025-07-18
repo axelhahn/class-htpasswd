@@ -1,6 +1,6 @@
 <?php
-
-$htaccessfile='demo-htaccess.txt';
+chdir(__DIR__);
+$htaccessfile='demo-htpasswd.txt';
 
 // ----------------------------------------------------------------------
 // FUNCTIONS

@@ -2,7 +2,7 @@
 /**
  * ======================================================================
  * 
- * PHP class to handle htaccess file
+ * PHP class to handle htpasswd file
  * 
  * After setting a htpasswd file you can
  * - add - a user and password
@@ -28,10 +28,10 @@ class htpasswd
     // ----------------------------------------------------------------------
 
     /**
-     * Full path of htaccess file
+     * Full path of htpasswd file
      * @var string
      */
-    protected string $sHtAccessFile = '';
+    protected string $sHtPasswdFile = '';
 
     /**
      * User array with the keys "user" and "pwhash"
@@ -53,12 +53,12 @@ class htpasswd
 
     /**
      * Constructor
-     * @param string $sHtAccessFile  optional: full path of htaccess file
+     * @param string $sHtPasswdFile  optional: full path of htpasswd file
      */
-    public function __construct(string $sHtAccessFile='')
+    public function __construct(string $sHtPasswdFile='')
     {
-        if($sHtAccessFile) {
-            $this->setFile($sHtAccessFile);
+        if($sHtPasswdFile) {
+            $this->setFile($sHtPasswdFile);
         }
     }
     // ----------------------------------------------------------------------
@@ -96,7 +96,7 @@ class htpasswd
     // ----------------------------------------------------------------------
 
     /**
-     * Read htaccess file and parse user data.
+     * Read htpasswd file and parse user data.
      * file data are put in local array
      * 
      * @return void
@@ -105,9 +105,9 @@ class htpasswd
     {
         $this->_wd(__METHOD__."()");
         $this->aItems=[];
-        if(file_exists($this->sHtAccessFile)) {
-            $this->_wd(__METHOD__.": file '$this->sHtAccessFile' exists - reading it");
-            foreach( file($this->sHtAccessFile) as $line){
+        if(file_exists($this->sHtPasswdFile)) {
+            $this->_wd(__METHOD__.": file '$this->sHtPasswdFile' exists - reading it");
+            foreach( file($this->sHtPasswdFile) as $line){
                 $aTmp = explode(":", $line);
                 $this->aItems[$aTmp[0]] = [
                     'pwhash' => $aTmp[1],
@@ -115,12 +115,12 @@ class htpasswd
             };
             $this->_wd(__METHOD__.": found ".count($this->aItems)." user(s).");
         } else {            
-            $this->_wd(__METHOD__.": file '$this->sHtAccessFile' does not exist yet.");
+            $this->_wd(__METHOD__.": file '$this->sHtPasswdFile' does not exist yet.");
         }
     }
 
     /**
-     * Generate content for full htaccess file
+     * Generate content for full htpasswd file
      * 
      * @return string
      */
@@ -136,26 +136,26 @@ class htpasswd
     }
 
     /**
-     * Save htaccess file. It returns true if successful
+     * Save htpasswd file. It returns true if successful
      * @return bool
      */
     protected function _saveFile(){
         $this->_wd(__METHOD__."()");
-        return !!file_put_contents($this->sHtAccessFile, $this->generateContent());
+        return !!file_put_contents($this->sHtPasswdFile, $this->generateContent());
     }
 
     /**
-     * Set full path of htaccess file. If it exists its users will be parsed.
+     * Set full path of htpasswd file. If it exists its users will be parsed.
      * 
-     * @param string $sHtAccessFile  optional: full path of htaccess file
+     * @param string $sHtPasswdFile  optional: full path of htpasswd file
      * @return void
      */
-    public function setFile(string $sHtAccessFile):void
+    public function setFile(string $sHtPasswdFile):void
     {
-        $this->_wd(__METHOD__."(file '$sHtAccessFile')");
-        if($sHtAccessFile !== $this->sHtAccessFile) {
+        $this->_wd(__METHOD__."(file '$sHtPasswdFile')");
+        if($sHtPasswdFile !== $this->sHtPasswdFile) {
             $this->_wd(__METHOD__.": file exists");
-            $this->sHtAccessFile = $sHtAccessFile;
+            $this->sHtPasswdFile = $sHtPasswdFile;
             $this->_readFile();
         }
     }
@@ -176,7 +176,7 @@ class htpasswd
     }
 
     /**
-     * Add a new user in htaccess file.
+     * Add a new user in htpasswd file.
      * It returns true if successful.
      * It returns false
      * - if user already exists
