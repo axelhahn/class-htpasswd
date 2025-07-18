@@ -20,11 +20,14 @@ rm -f main.zip
 
 ### Minimal download
 
-The file `htpasswd.class.php` is the only file for pure functionality.
+The class files are the only files for pure functionality.
 
 ```txt
 cd [webroot]/vendor/
+
 mkdir -p class-htpasswd/src
 cd class-htpasswd/src
+
 wget https://raw.githubusercontent.com/axelhahn/class-htpasswd/refs/heads/main/src/htpasswd.class.php
+wget https://raw.githubusercontent.com/axelhahn/class-htpasswd/refs/heads/main/src/htgroup.class.php
 ```
