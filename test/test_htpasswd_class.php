@@ -1,27 +1,14 @@
 <?php
 chdir(__DIR__);
-$htaccessfile='demo-htpasswd.txt';
-
-// ----------------------------------------------------------------------
-// FUNCTIONS
-// ----------------------------------------------------------------------
-
-/**
- * write a section header
- * @param string $sTitle  section title
- * @return void
- */
-function section($sTitle){
-    echo "
----> $sTitle".PHP_EOL;
-}
+$oHtpasswdpasswdfile='demo-htpasswd.txt';
 
 // ----------------------------------------------------------------------
 // MAIN
 // ----------------------------------------------------------------------
 
+require_once('inc_functions.php');
 require_once('../src/htpasswd.class.php');
-$ht=new htpasswd();
+$oHtpasswd=new htpasswd();
 
 echo "
 
@@ -30,55 +17,55 @@ echo "
 ";
 
 section("Enabling debug mode ... ");
-$ht->debug(true);
+$oHtpasswd->debug(true);
 
-section("Setting demo htaccess file '$htaccessfile'");
-$ht->setFile($htaccessfile);
+section("Setting demo htpasswd file '$oHtpasswdpasswdfile'");
+$oHtpasswd->setFile($oHtpasswdpasswdfile);
 
 section("Add user 'anton'");
-echo ($ht->add('anton','anton123') ? '✅ true' : '❌ false') .PHP_EOL;
+echo ($oHtpasswd->add('anton','anton123') ? '✅ true' : '❌ false') .PHP_EOL;
 
 section("This should be stopped: add the same user again");
-echo ($ht->add('anton','amton123') ? '❌ true' : '✅ false') .PHP_EOL;
+echo ($oHtpasswd->add('anton','amton123') ? '❌ true' : '✅ false') .PHP_EOL;
 
-section("Content of '$htaccessfile'");
-echo file_get_contents($htaccessfile);
+section("Content of '$oHtpasswdpasswdfile'");
+echo file_get_contents($oHtpasswdpasswdfile);
 
 section("Add user 'berta'");
-echo ($ht->add('berta','berta123') ? '✅ true' : '❌ false') .PHP_EOL;
+echo ($oHtpasswd->add('berta','berta123') ? '✅ true' : '❌ false') .PHP_EOL;
 
-section("Content of '$htaccessfile'");
-echo file_get_contents($htaccessfile);
+section("Content of '$oHtpasswdpasswdfile'");
+echo file_get_contents($oHtpasswdpasswdfile);
 
 section("list users");
-print_r($ht->list());
+print_r($oHtpasswd->list());
 
 section("Created user exists 'anton'?");
-echo ($ht->exists('anton') ? '✅ true' : '❌ false') .PHP_EOL;
+echo ($oHtpasswd->exists('anton') ? '✅ true' : '❌ false') .PHP_EOL;
 
 section("Not created user exists 'fred'");
-echo ($ht->exists('fred') ? '❌ true' : '✅ false') .PHP_EOL;
+echo ($oHtpasswd->exists('fred') ? '❌ true' : '✅ false') .PHP_EOL;
 
 section("Verify a correct password");
-echo ($ht->verifyPassword('anton', 'anton123') ? '✅ true' : '❌ false') .PHP_EOL;
+echo ($oHtpasswd->verifyPassword('anton', 'anton123') ? '✅ true' : '❌ false') .PHP_EOL;
 
 section("Verify a wrong password");
-echo ($ht->verifyPassword('anton', 'wrongpassword') ? '❌ true' : '✅ false') .PHP_EOL;
+echo ($oHtpasswd->verifyPassword('anton', 'wrongpassword') ? '❌ true' : '✅ false') .PHP_EOL;
 
 section("Verify a wrong password of a non existing user");
-echo ($ht->verifyPassword('fred', 'wrongpassword') ? '❌ true' : '✅ false') .PHP_EOL;
+echo ($oHtpasswd->verifyPassword('fred', 'wrongpassword') ? '❌ true' : '✅ false') .PHP_EOL;
 
 section("Remove existing user 'anton'");
-echo ($ht->remove('anton') ? '✅ true' : '❌ false') .PHP_EOL;
+echo ($oHtpasswd->remove('anton') ? '✅ true' : '❌ false') .PHP_EOL;
 
-section("Content of '$htaccessfile'");
-echo file_get_contents($htaccessfile);
+section("Content of '$oHtpasswdpasswdfile'");
+echo file_get_contents($oHtpasswdpasswdfile);
 
 section("Remove non existing user 'fred'");
-echo ($ht->remove('fred') ? '❌ true' : '✅ false') .PHP_EOL;
+echo ($oHtpasswd->remove('fred') ? '❌ true' : '✅ false') .PHP_EOL;
 
 section("Cleanup & exit");
-unlink($htaccessfile);
+unlink($oHtpasswdpasswdfile);
 echo PHP_EOL;
 
 // ----------------------------------------------------------------------
