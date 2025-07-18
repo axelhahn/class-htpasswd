@@ -50,6 +50,9 @@ echo ($ht->add('berta','berta123') ? '✅ true' : '❌ false') .PHP_EOL;
 section("Content of '$htaccessfile'");
 echo file_get_contents($htaccessfile);
 
+section("list users");
+print_r($ht->list());
+
 section("Created user exists 'anton'?");
 echo ($ht->exists('anton') ? '✅ true' : '❌ false') .PHP_EOL;
 
