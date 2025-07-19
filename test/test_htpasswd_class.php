@@ -8,7 +8,7 @@ $oHtpasswdpasswdfile='demo-htpasswd.txt';
 
 require_once('inc_functions.php');
 require_once('../src/htpasswd.class.php');
-$oHtpasswd=new htpasswd();
+$oHtpasswd=new axelhahn\htpasswd();
 
 echo "
 

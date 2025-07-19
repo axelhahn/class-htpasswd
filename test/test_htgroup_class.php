@@ -8,7 +8,7 @@ $oHtgroupgroupfile='demo-htgroup.txt';
 
 require_once('inc_functions.php');
 require_once('../src/htgroup.class.php');
-$oHtgroup=new htgroup();
+$oHtgroup=new axelhahn\htgroup();
 
 echo "
 
