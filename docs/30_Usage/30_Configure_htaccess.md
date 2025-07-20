@@ -1,6 +1,6 @@
 ## Introduction
 
-After genrateing a htpasswd file and/ or a htgroup file you need to add some configuration to your webserver to use them.
+After generating a htpasswd file and/ or a htgroup file you need to add some configuration to your webserver to use them.
 
 In the apache Httpd there are 2 common methods:
 
