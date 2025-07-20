@@ -12,19 +12,16 @@ After setting a **.htpasswd** file you can
 - verify - a password of an existing user
 
 There is a 2nd class to handle **.htgoups** file too. It can handle goups:
+
 - add
 - rename
 - delete groups
 - list all groups or members
+
 ... and memberships
+
 - userAdd
 - userRemove
-
----
-
-Status: BETA
-
----
 
 👤 Axel Hahn \
 📄 Source: <https://github.com/axelhahn/php-htpasswd/> \
