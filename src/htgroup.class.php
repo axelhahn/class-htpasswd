@@ -5,6 +5,15 @@
  * PHP class to handle htgroup file
  * https://wiki.selfhtml.org/wiki/Webserver/htaccess/Zugriffskontrolle
  * 
+ * This class can can handle .htgoups files:
+ * - add groups
+ * - rename
+ * - delete groups
+ * - list all groups or members
+ * ... and memberships
+ * - userAdd
+ * - userRemove
+ * 
  * @author www.axel-hahn.de
  * @license GNU Public License 3.0
  * @source https://github.com/axelhahn/class-htpasswd/
