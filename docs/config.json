@@ -1,5 +1,5 @@
 {
-    "title": "class-htpasswd",
+    "title": "php-htpasswd",
     "author": "Axel Hahn",
     "tagline": "PHP class to Handle htpasswd and htgroup files",
     "ignore": {
@@ -11,13 +11,13 @@
         "auto_landing": false,
         "date_modified": false,
         "jump_buttons": true,
-        "edit_on_github_": "axelhahn/class-htpasswd/tree/master/docs",
+        "edit_on_github_": "axelhahn/php-htpasswd/tree/master/docs",
         "edit_on_": {
             "name": "Gitlab",
             "basepath": "https://git-repo.iml.unibe.ch/iml-open-source/__PROJECT__/tree/master/docs"
         },
         "links": {
-            "Git Repo": "https://github.com/axelhahn/class-htpasswd/",
+            "Git Repo": "https://github.com/axelhahn/php-htpasswd/",
             "Axels Docs": "https://www.axel-hahn.de/docs/"
         },
         "theme": "daux-blue",

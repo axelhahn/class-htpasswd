@@ -14,7 +14,7 @@
  * 
  * @author www.axel-hahn.de
  * @license GNU Public License 3.0
- * @source https://github.com/axelhahn/class-htpasswd/
+ * @source https://github.com/axelhahn/php-htpasswd/
  * 
  * ----------------------------------------------------------------------
  * 2025-07-18  initial version

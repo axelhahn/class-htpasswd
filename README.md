@@ -1,4 +1,4 @@
-# class-htpasswd
+# php-htpasswd
 
 This PHP 8 class provides an easy way to manage htpasswd files.
 
@@ -27,6 +27,6 @@ Status: BETA
 ---
 
 👤 Axel Hahn \
-📄 Source: <https://github.com/axelhahn/class-htpasswd/> \
+📄 Source: <https://github.com/axelhahn/php-htpasswd/> \
 📜 Licence: GNU GPL 3 \
 📗 Docs: see docs folder
