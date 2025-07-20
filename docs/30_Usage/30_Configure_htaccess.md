@@ -2,7 +2,7 @@
 
 After generating a htpasswd file and/ or a htgroup file you need to add some configuration to your webserver to use them.
 
-In the apache Httpd there are 2 common methods:
+In the Apache httpd there are 2 common methods:
 
 ### Webservice config
 
@@ -49,7 +49,7 @@ Require valid-user
 
 You can define N users in the htpasswd but allow only a subset of them to access your webserver.
 
-Pay attention 
+Pay attention to the last line above: `Require valid-user`is replaced by `Require user <user_1> <user_2>`.
 
 ```txt
 AuthType Basic
@@ -63,6 +63,8 @@ Require user anton berta
 If you defined a htgroup file containing its members you can reference a group behind the require keyword. This can be useful if you have a user admin where you want to administrate users and groups - and you don't want to change the webservice config when changing a membership.
 
 Herefor you need to add the htgroup file to the webserver too.
+
+Then add `Require group <groupname>`.
 
 ```txt
 AuthType Basic
@@ -118,7 +120,7 @@ Require user jack
 
 ### Ask for login only on external network
 
-The trick is to use the `RequireAny` keyword. In this section you can define a list if "local" ip addresses where no login is required. if the ip address is not in the list the user needs to login.
+The trick is to use the `RequireAny` section. In this section you can define a list if "local" ip addresses where no login is required. If the ip address is not in the list the user needs to login.
 
 ```txt
 AuthType Basic
