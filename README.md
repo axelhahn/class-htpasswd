@@ -29,4 +29,4 @@ Status: BETA
 👤 Axel Hahn \
 📄 Source: <https://github.com/axelhahn/php-htpasswd/> \
 📜 Licence: GNU GPL 3 \
-📗 Docs: see docs folder
+📗 Docs: <https://www.axel-hahn.de/docs/php-htpasswd/>
