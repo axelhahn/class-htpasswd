@@ -80,9 +80,14 @@ Generate content for full htgroup file
 ### public list
 
 List all groups as array.
-You get the <group> as key. The value is an array with groupmembers
+with setting flag to show groupmembers you get an array
+with <group> as key and value is an array of groupmembers
 
-**Parameters**: **0** (required: 0)
+**Parameters**: **1** (required: 0)
+
+| Parameter | Type | Description
+|--         |--    |--
+\<optional\> bool $sShowMembers = false | bool | optional: show groupmembers; default: false
 
 
 **Return**: array

@@ -49,7 +49,7 @@ Array
 ### Update existing password
 
 ```php
-if (!$oHtpasswd->update('anton','antons-new-password'){
+if (!$oHtpasswd->update('anton','antons-new-password')){
     die("Failed");
 }
 echo "OK";
@@ -61,7 +61,7 @@ If the old password is given, the password update will be performed only if the 
 ### Delete user entry
 
 ```php
-if (!$oHtpasswd->remove('anton'){
+if (!$oHtpasswd->remove('anton')){
     die("Failed");
 }
 echo "OK, user was deleted";
