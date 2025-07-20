@@ -20,6 +20,7 @@
  * 
  * ----------------------------------------------------------------------
  * 2025-07-19  initial version
+ * 2025-07-20  add flag nn list()
  * ======================================================================
  */
 
@@ -222,14 +223,16 @@ class htgroup
 
     /**
      * List all groups as array.
-     * You get the <group> as key. The value is an array with groupmembers
+     * with setting flag to show groupmembers you get an array
+     * with <group> as key and value is an array of groupmembers
      * 
+     * @param bool $sShowMembers  optional: show groupmembers; default: false
      * @return array
      */
-    public function list():array
+    public function list(bool $sShowMembers=false):array
     {
         $this->_wd(__METHOD__."()");
-        return $this->aGroups;
+        return $sShowMembers ? $this->aGroups : array_keys($this->aGroups);
     }
 
     /**
