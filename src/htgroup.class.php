@@ -1,9 +1,11 @@
 <?php
+
+namespace axelhahn;
+
 /**
  * ======================================================================
  * 
  * PHP class to handle htgroup file
- * https://wiki.selfhtml.org/wiki/Webserver/htaccess/Zugriffskontrolle
  * 
  * This class can can handle .htgoups files:
  * - add groups
@@ -23,9 +25,6 @@
  * 2025-07-21  v1.0 add flag nn list()
  * ======================================================================
  */
-
-namespace axelhahn;
-
 class htgroup
 {
 

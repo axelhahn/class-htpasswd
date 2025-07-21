@@ -1,9 +1,11 @@
 <?php
+
+namespace axelhahn;
+
 /**
  * ======================================================================
  * 
  * PHP class to handle htpasswd file
- * https://wiki.selfhtml.org/wiki/Webserver/htaccess/Zugriffskontrolle
  * 
  * After setting a htpasswd file you can
  * - add - a user and password
@@ -21,9 +23,6 @@
  * 2025-07-21  v1.0
  * ======================================================================
  */
-
-namespace axelhahn;
-
 class htpasswd
 {
 
