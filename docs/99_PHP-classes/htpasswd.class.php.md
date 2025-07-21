@@ -1,162 +1,195 @@
-## Class axelhahn\htpasswd
+---
+title: Documentation of class axelhahn\htpasswd
+generator: Axels php-classdoc; https://github.com/axelhahn/php-classdoc
+---
+
+## 📦 Class axelhahn\htpasswd
 
 ```txt
 
+ ======================================================================
+
+ PHP class to handle htpasswd file
+
+ After setting a htpasswd file you can
+ - add - a user and password
+ - update - a user and password - optional after verifying the current password
+ - remove - a user
+ - verify - a password of an existing user
+ - check - if a given user exists
+
+ @author www.axel-hahn.de
+ @license GNU Public License 3.0
+ @source https://github.com/axelhahn/php-htpasswd/
+
+ ----------------------------------------------------------------------
+ 2025-07-18  initial version
+ 2025-07-21  v1.0
+ ======================================================================
+
 ```
 
-## Properties
+## 🔶 Properties
 
 (none)
 
-## Methods
+## 🔷 Methods
 
-### public __construct
+### 🔹 public __construct()
 
 Constructor
+
+Line [61](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L61) (6 lines)
+
+**Return**: `void`
 
 **Parameters**: **1** (required: 0)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<optional\> string $sHtPasswdFile = '' | string | optional: full path of htpasswd file
+| \<optional\> $sHtPasswdFile | `string` | optional: full path of htpasswd file
 
-
-**Return**: 
-
-### public add
+### 🔹 public add()
 
 Add a new user in htpasswd file.
-It returns true if successful.
-It returns false
-- if user already exists
-- writing .htpasswd file failed
+ It returns true if successful.
+ It returns false
+ - if user already exists
+ - writing .htpasswd file failed
+
+Line [194](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L194) (14 lines)
+
+**Return**: `bool`
 
 **Parameters**: **2** (required: 2)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sUser | string | username to add
-\<required\> string $sPassword | string | password to encrypt
+| \<required\> $sUser | `string` | username to add
+| \<required\> $sPassword | `string` | password to encrypt
 
-
-**Return**: bool
-
-### public debug
+### 🔹 public debug()
 
 Enable or disable debug mode
 
+Line [92](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L92) (4 lines)
+
+**Return**: `void`
+
 **Parameters**: **1** (required: 1)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> bool $bDebug | bool | new value of debug flag
+| \<required\> $bDebug | `bool` | new value of debug flag
 
-
-**Return**: void
-
-### public exists
+### 🔹 public exists()
 
 Check if a given username exists
-It returns true if successful.
-It returns false if the user does not exist.
+ It returns true if successful.
+ It returns false if the user does not exist.
+
+Line [217](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L217) (5 lines)
+
+**Return**: `bool`
 
 **Parameters**: **1** (required: 1)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sUser | string | username to search for
+| \<required\> $sUser | `string` | username to search for
 
-
-**Return**: bool
-
-### public generateContent
+### 🔹 public generateContent()
 
 Generate content for full htpasswd file
 
+Line [130](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L130) (10 lines)
+
+**Return**: `string`
+
 **Parameters**: **0** (required: 0)
 
-
-**Return**: string
-
-### public list
+### 🔹 public list()
 
 List all users as array.
-You get the <username> as key. The value is a hash with key "pwhash"
+ You get the <username> as key. The value is a hash with key "pwhash"
+
+Line [229](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L229) (5 lines)
+
+**Return**: `array`
 
 **Parameters**: **0** (required: 0)
 
-
-**Return**: array
-
-### public remove
+### 🔹 public remove()
 
 Remove an existing user
-It returns true if successful.
-It returns false
-- if user doesn't exist
-- writing .htpasswd file failed
+ It returns true if successful.
+ It returns false
+ - if user doesn't exist
+ - writing .htpasswd file failed
+
+Line [245](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L245) (11 lines)
+
+**Return**: `bool`
 
 **Parameters**: **1** (required: 1)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sUser | string | username to remove
+| \<required\> $sUser | `string` | username to remove
 
-
-**Return**: bool
-
-### public setFile
+### 🔹 public setFile()
 
 Set full path of htpasswd file. If it exists its users will be parsed.
 
+Line [156](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L156) (11 lines)
+
+**Return**: `void`
+
 **Parameters**: **1** (required: 1)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sHtPasswdFile | string | optional: full path of htpasswd file
+| \<required\> $sHtPasswdFile | `string` | optional: full path of htpasswd file
 
-
-**Return**: void
-
-### public update
+### 🔹 public update()
 
 Update password of an existing user
-It returns true if successful.
-It returns false
-- if user doesn't exist
-- if given old password doesn't match (old password is optional)
-- writing .htpasswd file failed
+ It returns true if successful.
+ It returns false
+ - if user doesn't exist
+ - if given old password doesn't match (old password is optional)
+ - writing .htpasswd file failed
+
+Line [270](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L270) (25 lines)
+
+**Return**: `bool`
 
 **Parameters**: **3** (required: 2)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sUser | string | username to update
-\<required\> string $sPassword | string | password
-\<optional\> string $sOldPassword = '' | string | optional: old password that must match
+| \<required\> $sUser | `string` | username to update
+| \<required\> $sPassword | `string` | password
+| \<optional\> $sOldPassword | `string` | optional: old password that must match
 
-
-**Return**: bool
-
-### public verifyPassword
+### 🔹 public verifyPassword()
 
 Verify password of an existing user
-It returns true if successful.
-It returns false
-- if user doens't exist
-- given password doesn't match
+ It returns true if successful.
+ It returns false
+ - if user doens't exist
+ - given password doesn't match
+
+Line [307](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L307) (15 lines)
+
+**Return**: `bool`
 
 **Parameters**: **2** (required: 2)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sUser | string | username to check
-\<required\> string $sPassword | string | password to verify
-
-
-**Return**: bool
-
-
+| \<required\> $sUser | `string` | username to check
+| \<required\> $sPassword | `string` | password to verify
 
 ---
-Generated with Axels PHP class doc parser.
+Generated with [Axels PHP class doc parser](https://github.com/axelhahn/php-classdoc)

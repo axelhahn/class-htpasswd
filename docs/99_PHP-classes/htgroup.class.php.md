@@ -1,199 +1,236 @@
-## Class axelhahn\htgroup
+---
+title: Documentation of class axelhahn\htgroup
+generator: Axels php-classdoc; https://github.com/axelhahn/php-classdoc
+---
+
+## 📦 Class axelhahn\htgroup
 
 ```txt
 
+ ======================================================================
+
+ PHP class to handle htgroup file
+
+ This class can can handle .htgoups files:
+ - add groups
+ - rename
+ - delete groups
+ - list all groups or members
+ ... and memberships
+ - userAdd
+ - userRemove
+
+ @author www.axel-hahn.de
+ @license GNU Public License 3.0
+ @source https://github.com/axelhahn/php-htpasswd/
+
+ ----------------------------------------------------------------------
+ 2025-07-19  initial version
+ 2025-07-21  v1.0 add flag nn list()
+ ======================================================================
+
 ```
 
-## Properties
+## 🔶 Properties
 
 (none)
 
-## Methods
+## 🔷 Methods
 
-### public __construct
+### 🔹 public __construct()
 
 Constructor
 
+Line [63](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L63) (6 lines)
+
+**Return**: `void`
+
 **Parameters**: **1** (required: 0)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<optional\> string $sHtGroupFile = '' | string | optional: full path of htgroup file
+| \<optional\> $sHtGroupFile | `string` | optional: full path of htgroup file
 
-
-**Return**: 
-
-### public add
+### 🔹 public add()
 
 Add a new group in htgroup file.
-It returns true if successful.
-It returns false
-- if group already exists
-- writing .htgroup file failed
+ It returns true if successful.
+ It returns false
+ - if group already exists
+ - writing .htgroup file failed
+
+Line [196](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L196) (12 lines)
+
+**Return**: `bool`
 
 **Parameters**: **1** (required: 1)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sGroup | string | group name to add
+| \<required\> $sGroup | `string` | group name to add
 
-
-**Return**: bool
-
-### public debug
+### 🔹 public debug()
 
 Enable or disable debug mode
 
+Line [94](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L94) (4 lines)
+
+**Return**: `void`
+
 **Parameters**: **1** (required: 1)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> bool $bDebug | bool | new value of debug flag
+| \<required\> $bDebug | `bool` | new value of debug flag
 
-
-**Return**: void
-
-### public exists
+### 🔹 public exists()
 
 Check if a given group name exists
-It returns true if successful.
-It returns false if the group does not exist.
+ It returns true if successful.
+ It returns false if the group does not exist.
+
+Line [217](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L217) (5 lines)
+
+**Return**: `bool`
 
 **Parameters**: **1** (required: 1)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sGroup | string | groupname to search for
+| \<required\> $sGroup | `string` | groupname to search for
 
-
-**Return**: bool
-
-### public generateContent
+### 🔹 public generateContent()
 
 Generate content for full htgroup file
 
+Line [132](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L132) (10 lines)
+
+**Return**: `string`
+
 **Parameters**: **0** (required: 0)
 
-
-**Return**: string
-
-### public list
+### 🔹 public list()
 
 List all groups as array.
-with setting flag to show groupmembers you get an array
-with <group> as key and value is an array of groupmembers
+ with setting flag to show groupmembers you get an array
+ with <group> as key and value is an array of groupmembers
+
+Line [231](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L231) (5 lines)
+
+**Return**: `array`
 
 **Parameters**: **1** (required: 0)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<optional\> bool $sShowMembers = false | bool | optional: show groupmembers; default: false
+| \<optional\> $sShowMembers | `bool` | optional: show groupmembers; default: false
 
-
-**Return**: array
-
-### public members
+### 🔹 public members()
 
 List members of a given existing group
-it returns
-- an array of groupmembers if successful
-- false if group doesn't exist
+ it returns
+ - an array of groupmembers if successful
+ - false if group doesn't exist
+
+Line [246](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L246) (11 lines)
+
+**Return**: `array|bool`
 
 **Parameters**: **1** (required: 1)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sGroup | string | groupname
+| \<required\> $sGroup | `string` | groupname
 
-
-**Return**: array|bool
-
-### public remove
+### 🔹 public remove()
 
 Remove an existing group
-It returns true if successful.
-It returns false
-- if group doesn't exist
-- writing .htgroup file failed
+ It returns true if successful.
+ It returns false
+ - if group doesn't exist
+ - writing .htgroup file failed
+
+Line [268](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L268) (11 lines)
+
+**Return**: `bool`
 
 **Parameters**: **1** (required: 1)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sGroup | string | groupname to remove
+| \<required\> $sGroup | `string` | groupname to remove
 
-
-**Return**: bool
-
-### public rename
+### 🔹 public rename()
 
 Rename a group
-It returns true if successful.
-It returns false
-- if group doesn't exist
-- writing .htgroup file failed
+ It returns true if successful.
+ It returns false
+ - if group doesn't exist
+ - writing .htgroup file failed
+
+Line [291](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L291) (12 lines)
+
+**Return**: `bool`
 
 **Parameters**: **2** (required: 2)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sGroup | string | groupname to update
-\<required\> string $sNewGroup | string | new groupname
+| \<required\> $sGroup | `string` | groupname to update
+| \<required\> $sNewGroup | `string` | new groupname
 
-
-**Return**: bool
-
-### public setFile
+### 🔹 public setFile()
 
 Set full path of htgroup file. If it exists its groups will be parsed.
 
+Line [159](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L159) (11 lines)
+
+**Return**: `void`
+
 **Parameters**: **1** (required: 1)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sHtGroupFile | string | optional: full path of htgroup file
+| \<required\> $sHtGroupFile | `string` | optional: full path of htgroup file
 
-
-**Return**: void
-
-### public userAdd
+### 🔹 public userAdd()
 
 Add a user to an existing group
-It returns true if successful.
-It returns false
-- if group doesn't exist
-- writing .htgroup file failed
+ It returns true if successful.
+ It returns false
+ - if group doesn't exist
+ - writing .htgroup file failed
+
+Line [319](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L319) (10 lines)
+
+**Return**: `bool`
 
 **Parameters**: **2** (required: 2)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sUser | string | mixed $sUser
-\<required\> string $sGroup | string | mixed $sGroup
+| \<required\> $sUser | `string` | 
+| \<required\> $sGroup | `string` | 
 
-
-**Return**: bool
-
-### public userRemove
+### 🔹 public userRemove()
 
 Add a user to an existing group
-It returns true if successful.
-It returns false
-- if group doesn't exist
-- if the user in the given group doesn't exist
-- writing .htgroup file failed
+ It returns true if successful.
+ It returns false
+ - if group doesn't exist
+ - if the user in the given group doesn't exist
+ - writing .htgroup file failed
+
+Line [342](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L342) (16 lines)
+
+**Return**: `bool`
 
 **Parameters**: **2** (required: 2)
 
 | Parameter | Type | Description
 |--         |--    |--
-\<required\> string $sUser | string | mixed $sUser
-\<required\> string $sGroup | string | mixed $sGroup
-
-
-**Return**: bool
-
-
+| \<required\> $sUser | `string` | 
+| \<required\> $sGroup | `string` | 
 
 ---
-Generated with Axels PHP class doc parser.
+Generated with [Axels PHP class doc parser](https://github.com/axelhahn/php-classdoc)
