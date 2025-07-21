@@ -1,21 +1,33 @@
 #!/bin/bash
+# ====================================================================== 
+#
+# Generator for markdown files from php class files
+#
 # ----------------------------------------------------------------------
-# generate_classdoc.sh
-# this script runs on my computer only where the php doc class is 
-# referenced locally
-# ----------------------------------------------------------------------
+# 2025-07-21  v1.0  axelhahn  initial version
+# ====================================================================== 
 
-cd "$( dirname "$0" )/../"
-APPDIR="$( pwd )"
-OUTDIR="$APPDIR/docs/99_PHP-classes"
+echo "
 
-echo "APPDIR: $APPDIR"
-echo "OUTDIR: $OUTDIR"
+#####|  Generate class documentation  |#####
 
-cd "$( dirname $0)/../../php-classdoc"
+"
+cd "$( dirname "$0" )" || exit 1
+. "config.sh" || exit 2
+cd "$PARSERDIR" || exit 3
 
-for phpclassfile in $APPDIR/src/*.class.php; do
+for phpclassfile in $FILELIST
+do
     echo "----------------------------------------------------------------------"
-    ./parse-class.php --debug --out md $phpclassfile > "$OUTDIR/$(basename $phpclassfile).md"
+    echo "processing: $phpclassfile"
+    ./parse-class.php \
+        --debug \
+        --source "$SOURCEURL/$phpclassfile" \
+        --out md \
+        "$APPDIR/$phpclassfile" > "$OUTDIR/$(basename $phpclassfile).md"
 done
-echo "done"
+echo "----------------------------------------------------------------------"
+
+echo "Done".
+
+# ----------------------------------------------------------------------
