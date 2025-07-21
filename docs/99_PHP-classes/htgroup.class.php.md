@@ -1,5 +1,5 @@
 ---
-title: Documentation of class axelhahn\htgroup
+title: axelhahn\htgroup
 generator: Axels php-classdoc; https://github.com/axelhahn/php-classdoc
 ---
 

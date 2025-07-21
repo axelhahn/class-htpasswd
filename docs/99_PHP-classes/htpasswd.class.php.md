@@ -1,5 +1,5 @@
 ---
-title: Documentation of class axelhahn\htpasswd
+title: axelhahn\htpasswd
 generator: Axels php-classdoc; https://github.com/axelhahn/php-classdoc
 ---
 
