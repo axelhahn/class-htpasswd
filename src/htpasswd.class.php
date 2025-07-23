@@ -21,6 +21,7 @@ namespace axelhahn;
  * ----------------------------------------------------------------------
  * 2025-07-18  initial version
  * 2025-07-21  v1.0
+ * 2025-07-23  v1.1  update phpdoc
  * ======================================================================
  */
 class htpasswd
@@ -40,7 +41,7 @@ class htpasswd
      * User array with the keys "user" and "pwhash"
      * @var array
      */
-    protected array $aItems =[];
+    protected array $aItems = [];
 
 
     /**
@@ -52,15 +53,14 @@ class htpasswd
     // ----------------------------------------------------------------------
     // constructor
     // ----------------------------------------------------------------------
-    
 
     /**
      * Constructor
      * @param string $sHtPasswdFile  optional: full path of htpasswd file
      */
-    public function __construct(string $sHtPasswdFile='')
+    public function __construct(string $sHtPasswdFile = '')
     {
-        if($sHtPasswdFile) {
+        if ($sHtPasswdFile) {
             $this->setFile($sHtPasswdFile);
         }
     }
@@ -76,10 +76,10 @@ class htpasswd
      * @param string $sMessage
      * @return void
      */
-    protected function _wd(string $sMessage):void
+    protected function _wd(string $sMessage): void
     {
-        if($this->bDebug) {
-            echo "DEBUG: $sMessage".PHP_EOL;
+        if ($this->bDebug) {
+            echo "DEBUG: $sMessage" . PHP_EOL;
         }
     }
 
@@ -89,7 +89,7 @@ class htpasswd
      * @param bool $bDebug  new value of debug flag
      * @return void
      */
-    public function debug(bool $bDebug):void
+    public function debug(bool $bDebug): void
     {
         $this->bDebug = $bDebug;
     }
@@ -106,34 +106,37 @@ class htpasswd
      */
     protected function _readFile()
     {
-        $this->_wd(__METHOD__."()");
-        $this->aItems=[];
-        if(file_exists($this->sHtPasswdFile)) {
-            $this->_wd(__METHOD__.": file '$this->sHtPasswdFile' exists - reading it");
-            foreach( file($this->sHtPasswdFile) as $line){
+        $this->_wd(__METHOD__ . "()");
+        $this->aItems = [];
+        if (file_exists($this->sHtPasswdFile)) {
+            $this->_wd(__METHOD__ . ": file '$this->sHtPasswdFile' exists - reading it");
+            foreach (file($this->sHtPasswdFile) as $line) {
                 $aTmp = explode(":", $line);
                 $this->aItems[$aTmp[0]] = [
                     'pwhash' => $aTmp[1],
                 ];
-            };
-            $this->_wd(__METHOD__.": found ".count($this->aItems)." user(s).");
-        } else {            
-            $this->_wd(__METHOD__.": file '$this->sHtPasswdFile' does not exist yet.");
+            }
+            ;
+            $this->_wd(__METHOD__ . ": found " . count($this->aItems) . " user(s).");
+        } else {
+            $this->_wd(__METHOD__ . ": file '$this->sHtPasswdFile' does not exist yet.");
         }
     }
 
     /**
      * Generate content for full htpasswd file
+     * This method is used internally in the _saveFile() method.
+     * You can use this to render a preview of the generated file.
      * 
      * @return string
      */
-    public function generateContent():string
+    public function generateContent(): string
     {
-        $this->_wd(__METHOD__."()");
+        $this->_wd(__METHOD__ . "()");
         $sContent = '';
-        $this->_wd(__METHOD__.": adding ".count($this->aItems)." user(s) ...");
-        foreach($this->aItems as $sUser=>$aItem) {
-            $sContent.=$sUser.":".$aItem['pwhash']."\n";
+        $this->_wd(__METHOD__ . ": adding " . count($this->aItems) . " user(s) ...");
+        foreach ($this->aItems as $sUser => $aItem) {
+            $sContent .= $sUser . ":" . $aItem['pwhash'] . "\n";
         }
         return $sContent;
     }
@@ -142,8 +145,9 @@ class htpasswd
      * Save htpasswd file. It returns true if successful
      * @return bool
      */
-    protected function _saveFile(){
-        $this->_wd(__METHOD__."()");
+    protected function _saveFile()
+    {
+        $this->_wd(__METHOD__ . "()");
         return !!file_put_contents($this->sHtPasswdFile, $this->generateContent());
     }
 
@@ -153,15 +157,15 @@ class htpasswd
      * @param string $sHtPasswdFile  optional: full path of htpasswd file
      * @return void
      */
-    public function setFile(string $sHtPasswdFile):void
+    public function setFile(string $sHtPasswdFile): void
     {
-        $this->_wd(__METHOD__."(file '$sHtPasswdFile')");
-        if($sHtPasswdFile !== $this->sHtPasswdFile) {
-            $this->_wd(__METHOD__.": file exists");
+        $this->_wd(__METHOD__ . "(file '$sHtPasswdFile')");
+        if ($sHtPasswdFile !== $this->sHtPasswdFile) {
+            $this->_wd(__METHOD__ . ": file exists");
             $this->sHtPasswdFile = $sHtPasswdFile;
             $this->_readFile();
         } else {
-            $this->_wd(__METHOD__.": This is the same file that is already loaded.");
+            $this->_wd(__METHOD__ . ": This is the same file that is already loaded.");
         }
     }
 
@@ -174,10 +178,10 @@ class htpasswd
      * @param string $sUser  username
      * @return bool
      */
-    protected function _UserExists(string $sUser):bool
+    protected function _UserExists(string $sUser): bool
     {
-        $this->_wd(__METHOD__."(user '$sUser')");
-        return isset($this->aItems[$sUser]); 
+        $this->_wd(__METHOD__ . "(user '$sUser')");
+        return isset($this->aItems[$sUser]);
     }
 
     /**
@@ -191,16 +195,16 @@ class htpasswd
      * @param string $sPassword  password to encrypt
      * @return bool
      */
-    public function add(string $sUser, string $sPassword):bool
+    public function add(string $sUser, string $sPassword): bool
     {
-        $this->_wd(__METHOD__."(user '$sUser', password '**********')");
-        if($this->_UserExists($sUser)) {
-            $this->_wd(__METHOD__.": Cannot add user '$sUser', user already exists");
+        $this->_wd(__METHOD__ . "(user '$sUser', password '**********')");
+        if ($this->_UserExists($sUser)) {
+            $this->_wd(__METHOD__ . ": Cannot add user '$sUser', user already exists");
             return false;
         }
 
-        $this->_wd(__METHOD__.": Adding user ...");
-        $this->aItems[$sUser]=[            
+        $this->_wd(__METHOD__ . ": Adding user ...");
+        $this->aItems[$sUser] = [
             'pwhash' => password_hash($sPassword, PASSWORD_BCRYPT),
         ];
         return $this->_saveFile();
@@ -214,9 +218,9 @@ class htpasswd
      * @param string $sUser      username to search for
      * @return bool
      */
-    public function exists(string $sUser):bool
+    public function exists(string $sUser): bool
     {
-        $this->_wd(__METHOD__."(user '$sUser')");
+        $this->_wd(__METHOD__ . "(user '$sUser')");
         return $this->_UserExists($sUser);
     }
 
@@ -226,9 +230,9 @@ class htpasswd
      * 
      * @return array
      */
-    public function list():array
+    public function list(): array
     {
-        $this->_wd(__METHOD__."()");
+        $this->_wd(__METHOD__ . "()");
         return $this->aItems;
     }
 
@@ -242,18 +246,18 @@ class htpasswd
      * @param string $sUser      username to remove
      * @return bool
      */
-    public function remove(string $sUser):bool
+    public function remove(string $sUser): bool
     {
-        $this->_wd(__METHOD__."(user '$sUser')");
-        if(!$this->_UserExists($sUser)) {
-            $this->_wd(__METHOD__.": Cannot remove user '$sUser' - it does not exist.");
+        $this->_wd(__METHOD__ . "(user '$sUser')");
+        if (!$this->_UserExists($sUser)) {
+            $this->_wd(__METHOD__ . ": Cannot remove user '$sUser' - it does not exist.");
             return false;
         }
 
         unset($this->aItems[$sUser]);
         return $this->_saveFile();
     }
- 
+
     /**
      * Update password of an existing user
      * It returns true if successful.
@@ -267,25 +271,25 @@ class htpasswd
      * @param string $sOldPassword  optional: old password that must match
      * @return bool
      */
-    public function update(string $sUser, string $sPassword, string $sOldPassword=''):bool
+    public function update(string $sUser, string $sPassword, string $sOldPassword = ''): bool
     {
-        $this->_wd(__METHOD__."(user '$sUser', password '**********', old password ".($sOldPassword ? "**********" : "not set").")");
-        if(!$this->_UserExists($sUser)) {
-            $this->_wd(__METHOD__.": Cannot update password for '$sUser', user does not exist.");
+        $this->_wd(__METHOD__ . "(user '$sUser', password '**********', old password " . ($sOldPassword ? "**********" : "not set") . ")");
+        if (!$this->_UserExists($sUser)) {
+            $this->_wd(__METHOD__ . ": Cannot update password for '$sUser', user does not exist.");
             return false;
         }
 
-        if($sOldPassword){
-            if(!password_verify($sOldPassword, $this->aItems[$sUser]['pwhash'])){
-                $this->_wd(__METHOD__.": Old password does not match");
+        if ($sOldPassword) {
+            if (!password_verify($sOldPassword, $this->aItems[$sUser]['pwhash'])) {
+                $this->_wd(__METHOD__ . ": Old password does not match");
                 return false;
             }
-            $this->_wd(__METHOD__.": Old password matches");
+            $this->_wd(__METHOD__ . ": Old password matches");
         } else {
-            $this->_wd(__METHOD__.": No password to verify was given");
+            $this->_wd(__METHOD__ . ": No password to verify was given");
         }
 
-        $this->_wd(__METHOD__.": Updating password of given user ...");
+        $this->_wd(__METHOD__ . ": Updating password of given user ...");
         $this->aItems[] = [
             'user' => $sUser,
             'pwhash' => password_hash($sPassword, PASSWORD_BCRYPT),
@@ -304,18 +308,18 @@ class htpasswd
      * @param string $sPassword     password to verify
      * @return bool
      */
-    public function verifyPassword(string $sUser, string $sPassword):bool
+    public function verifyPassword(string $sUser, string $sPassword): bool
     {
-        $this->_wd(__METHOD__."(user '$sUser', password '**********')");
-        if(!$this->_UserExists($sUser)) {
-            $this->_wd(__METHOD__.": Cannot verify - user '$sUser' does not exist");
+        $this->_wd(__METHOD__ . "(user '$sUser', password '**********')");
+        if (!$this->_UserExists($sUser)) {
+            $this->_wd(__METHOD__ . ": Cannot verify - user '$sUser' does not exist");
             return false;
         }
-        if (password_verify($sPassword, $this->aItems[$sUser]['pwhash'])){
-            $this->_wd(__METHOD__.": Password matches");
+        if (password_verify($sPassword, $this->aItems[$sUser]['pwhash'])) {
+            $this->_wd(__METHOD__ . ": Password matches");
             return true;
         } else {
-            $this->_wd(__METHOD__.": Password does not match");
+            $this->_wd(__METHOD__ . ": Password does not match");
             return false;
         }
     }

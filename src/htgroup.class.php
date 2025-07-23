@@ -22,7 +22,8 @@ namespace axelhahn;
  * 
  * ----------------------------------------------------------------------
  * 2025-07-19  initial version
- * 2025-07-21  v1.0 add flag nn list()
+ * 2025-07-21  v1.0  add flag nn list()
+ * 2025-07-23  v1.1  update phpdoc
  * ======================================================================
  */
 class htgroup
@@ -42,7 +43,7 @@ class htgroup
      * Groups as array with the keys "groupname" and list of users as value
      * @var array
      */
-    protected array $aGroups =[];
+    protected array $aGroups = [];
 
 
     /**
@@ -54,15 +55,15 @@ class htgroup
     // ----------------------------------------------------------------------
     // constructor
     // ----------------------------------------------------------------------
-    
+
 
     /**
      * Constructor
      * @param string $sHtGroupFile  optional: full path of htgroup file
      */
-    public function __construct(string $sHtGroupFile='')
+    public function __construct(string $sHtGroupFile = '')
     {
-        if($sHtGroupFile) {
+        if ($sHtGroupFile) {
             $this->setFile($sHtGroupFile);
         }
     }
@@ -78,10 +79,10 @@ class htgroup
      * @param string $sMessage
      * @return void
      */
-    protected function _wd(string $sMessage):void
+    protected function _wd(string $sMessage): void
     {
-        if($this->bDebug) {
-            echo "DEBUG: $sMessage".PHP_EOL;
+        if ($this->bDebug) {
+            echo "DEBUG: $sMessage" . PHP_EOL;
         }
     }
 
@@ -91,7 +92,7 @@ class htgroup
      * @param bool $bDebug  new value of debug flag
      * @return void
      */
-    public function debug(bool $bDebug):void
+    public function debug(bool $bDebug): void
     {
         $this->bDebug = $bDebug;
     }
@@ -108,34 +109,37 @@ class htgroup
      */
     protected function _readFile(): void
     {
-        $this->_wd(__METHOD__."()");
-        $this->aGroups=[];
-        if(file_exists($this->sHtGroupFile)) {
-            $this->_wd(__METHOD__.": file '$this->sHtGroupFile' exists - reading it");
-            foreach( file($this->sHtGroupFile) as $line){
+        $this->_wd(__METHOD__ . "()");
+        $this->aGroups = [];
+        if (file_exists($this->sHtGroupFile)) {
+            $this->_wd(__METHOD__ . ": file '$this->sHtGroupFile' exists - reading it");
+            foreach (file($this->sHtGroupFile) as $line) {
                 $aTmp = explode(":", $line);
-                $aUsers=array_filter(explode(' ', $aTmp[1]));
+                $aUsers = array_filter(explode(' ', $aTmp[1]));
 
                 $this->aGroups[$aTmp[0]] = $aUsers;
-            };
-            $this->_wd(__METHOD__.": found ".count($this->aGroups)." group(s).");
-        } else {            
-            $this->_wd(__METHOD__.": file '$this->sHtGroupFile' does not exist yet.");
+            }
+            ;
+            $this->_wd(__METHOD__ . ": found " . count($this->aGroups) . " group(s).");
+        } else {
+            $this->_wd(__METHOD__ . ": file '$this->sHtGroupFile' does not exist yet.");
         }
     }
 
     /**
      * Generate content for full htgroup file
+     * This method is used internally in the _saveFile() method.
+     * You can use this to render a preview of the generated file.
      * 
      * @return string
      */
-    public function generateContent():string
+    public function generateContent(): string
     {
-        $this->_wd(__METHOD__."()");
+        $this->_wd(__METHOD__ . "()");
         $sContent = '';
-        $this->_wd(__METHOD__.": adding ".count($this->aGroups)." group(s) ...");
-        foreach($this->aGroups as $sGroup=>$aItem) {
-            $sContent.=$sGroup.": ".implode(" ", $aItem)."\n";
+        $this->_wd(__METHOD__ . ": adding " . count($this->aGroups) . " group(s) ...");
+        foreach ($this->aGroups as $sGroup => $aItem) {
+            $sContent .= $sGroup . ": " . implode(" ", $aItem) . "\n";
         }
         return $sContent;
     }
@@ -146,7 +150,7 @@ class htgroup
      */
     protected function _saveFile(): bool
     {
-        $this->_wd(__METHOD__."()");
+        $this->_wd(__METHOD__ . "()");
         return !!file_put_contents($this->sHtGroupFile, $this->generateContent());
     }
 
@@ -156,15 +160,15 @@ class htgroup
      * @param string $sHtGroupFile  optional: full path of htgroup file
      * @return void
      */
-    public function setFile(string $sHtGroupFile):void
+    public function setFile(string $sHtGroupFile): void
     {
-        $this->_wd(__METHOD__."(file '$sHtGroupFile')");
-        if($sHtGroupFile !== $this->sHtGroupFile) {
-            $this->_wd(__METHOD__.": file exists");
+        $this->_wd(__METHOD__ . "(file '$sHtGroupFile')");
+        if ($sHtGroupFile !== $this->sHtGroupFile) {
+            $this->_wd(__METHOD__ . ": file exists");
             $this->sHtGroupFile = $sHtGroupFile;
             $this->_readFile();
         } else {
-            $this->_wd(__METHOD__.": This is the same file that is already loaded.");
+            $this->_wd(__METHOD__ . ": This is the same file that is already loaded.");
         }
     }
 
@@ -177,10 +181,10 @@ class htgroup
      * @param string $sGroup  groupname
      * @return bool
      */
-    protected function _groupExists(string $sGroup):bool
+    protected function _groupExists(string $sGroup): bool
     {
-        $this->_wd(__METHOD__."(group '$sGroup')");
-        return isset($this->aGroups[$sGroup]); 
+        $this->_wd(__METHOD__ . "(group '$sGroup')");
+        return isset($this->aGroups[$sGroup]);
     }
 
     /**
@@ -193,16 +197,16 @@ class htgroup
      * @param string $sGroup      group name to add
      * @return bool
      */
-    public function add(string $sGroup):bool
+    public function add(string $sGroup): bool
     {
-        $this->_wd(__METHOD__."(group '$sGroup')");
-        if($this->_groupExists($sGroup)) {
-            $this->_wd(__METHOD__.": Cannot add group '$sGroup', group already exists");
+        $this->_wd(__METHOD__ . "(group '$sGroup')");
+        if ($this->_groupExists($sGroup)) {
+            $this->_wd(__METHOD__ . ": Cannot add group '$sGroup', group already exists");
             return false;
         }
 
-        $this->_wd(__METHOD__.": Adding group ...");
-        $this->aGroups[$sGroup]=[];
+        $this->_wd(__METHOD__ . ": Adding group ...");
+        $this->aGroups[$sGroup] = [];
         return $this->_saveFile();
     }
 
@@ -214,9 +218,9 @@ class htgroup
      * @param string $sGroup      groupname to search for
      * @return bool
      */
-    public function exists(string $sGroup):bool
+    public function exists(string $sGroup): bool
     {
-        $this->_wd(__METHOD__."(group '$sGroup')");
+        $this->_wd(__METHOD__ . "(group '$sGroup')");
         return $this->_groupExists($sGroup);
     }
 
@@ -228,9 +232,9 @@ class htgroup
      * @param bool $sShowMembers  optional: show groupmembers; default: false
      * @return array
      */
-    public function list(bool $sShowMembers=false):array
+    public function list(bool $sShowMembers = false): array
     {
-        $this->_wd(__METHOD__."()");
+        $this->_wd(__METHOD__ . "()");
         return $sShowMembers ? $this->aGroups : array_keys($this->aGroups);
     }
 
@@ -243,15 +247,15 @@ class htgroup
      * @param string $sGroup      groupname
      * @return bool|array
      */
-    public function members(string $sGroup):bool|array
+    public function members(string $sGroup): bool|array
     {
-        $this->_wd(__METHOD__."(group '$sGroup')");
-        if(!$this->_groupExists($sGroup)) {
-            $this->_wd(__METHOD__.": Cannot show members of group '$sGroup', group doesn't exist.");
+        $this->_wd(__METHOD__ . "(group '$sGroup')");
+        if (!$this->_groupExists($sGroup)) {
+            $this->_wd(__METHOD__ . ": Cannot show members of group '$sGroup', group doesn't exist.");
             return false;
         }
 
-        $this->_wd(__METHOD__.": Returning ".count($this->aGroups[$sGroup])." member(s) ...");
+        $this->_wd(__METHOD__ . ": Returning " . count($this->aGroups[$sGroup]) . " member(s) ...");
         return $this->aGroups[$sGroup];
     }
 
@@ -265,18 +269,18 @@ class htgroup
      * @param string $sGroup      groupname to remove
      * @return bool
      */
-    public function remove(string $sGroup):bool
+    public function remove(string $sGroup): bool
     {
-        $this->_wd(__METHOD__."(group '$sGroup')");
-        if(!$this->_groupExists($sGroup)) {
-            $this->_wd(__METHOD__.": Cannot remove group '$sGroup' - it does not exist.");
+        $this->_wd(__METHOD__ . "(group '$sGroup')");
+        if (!$this->_groupExists($sGroup)) {
+            $this->_wd(__METHOD__ . ": Cannot remove group '$sGroup' - it does not exist.");
             return false;
         }
 
         unset($this->aGroups[$sGroup]);
         return $this->_saveFile();
     }
- 
+
     /**
      * Rename a group
      * It returns true if successful.
@@ -288,11 +292,11 @@ class htgroup
      * @param string $sNewGroup     new groupname
      * @return bool
      */
-    public function rename(string $sGroup, string $sNewGroup):bool
+    public function rename(string $sGroup, string $sNewGroup): bool
     {
-        $this->_wd(__METHOD__."(group '$sGroup', new group '$sNewGroup')");
-        if(!$this->_groupExists($sGroup)) {
-            $this->_wd(__METHOD__.": Cannot update password for '$sGroup', group does not exist.");
+        $this->_wd(__METHOD__ . "(group '$sGroup', new group '$sNewGroup')");
+        if (!$this->_groupExists($sGroup)) {
+            $this->_wd(__METHOD__ . ": Cannot update password for '$sGroup', group does not exist.");
             return false;
         }
         $this->aGroups[$sNewGroup] = $this->aGroups[$sGroup];
@@ -312,15 +316,15 @@ class htgroup
      * - if group doesn't exist
      * - writing .htgroup file failed
      *
-     * @param mixed $sUser
-     * @param mixed $sGroup
+     * @param string $sUser   username to add
+     * @param string $sGroup  group to add user to; this group must exist
      * @return bool
      */
-    public function userAdd(string $sUser, string $sGroup):bool
+    public function userAdd(string $sUser, string $sGroup): bool
     {
-        $this->_wd(__METHOD__."(user '$sUser', group '$sGroup')");
-        if(!$this->_groupExists($sGroup)) {
-            $this->_wd(__METHOD__.": Cannot add user '$sUser' to group '$sGroup', group does not exist.");
+        $this->_wd(__METHOD__ . "(user '$sUser', group '$sGroup')");
+        if (!$this->_groupExists($sGroup)) {
+            $this->_wd(__METHOD__ . ": Cannot add user '$sUser' to group '$sGroup', group does not exist.");
             return false;
         }
         $this->aGroups[$sGroup][] = $sUser;
@@ -335,22 +339,22 @@ class htgroup
      * - if the user in the given group doesn't exist
      * - writing .htgroup file failed
      *
-     * @param mixed $sUser
-     * @param mixed $sGroup
+     * @param string $sUser   username to delete
+     * @param string $sGroup  group name where to delete the user from
      * @return bool
      */
-    public function userRemove(string $sUser, string $sGroup):bool
+    public function userRemove(string $sUser, string $sGroup): bool
     {
-        $this->_wd(__METHOD__."(user '$sUser', group '$sGroup')");
-        if(!$this->_groupExists($sGroup)) {
-            $this->_wd(__METHOD__.": Cannot add user '$sUser' to group '$sGroup', group does not exist.");
+        $this->_wd(__METHOD__ . "(user '$sUser', group '$sGroup')");
+        if (!$this->_groupExists($sGroup)) {
+            $this->_wd(__METHOD__ . ": Cannot add user '$sUser' to group '$sGroup', group does not exist.");
             return false;
         }
-        if (($key = array_search($sUser, $this->aGroups[$sGroup])) !== false){
-            $this->_wd(__METHOD__." removing key $key");
+        if (($key = array_search($sUser, $this->aGroups[$sGroup])) !== false) {
+            $this->_wd(__METHOD__ . " removing key $key");
             unset($this->aGroups[$sGroup][$key]);
         } else {
-            $this->_wd(__METHOD__.": Cannot remove user '$sUser' from group '$sGroup', user does not exist in it.");
+            $this->_wd(__METHOD__ . ": Cannot remove user '$sUser' from group '$sGroup', user does not exist in it.");
             return false;
         }
         return $this->_saveFile();

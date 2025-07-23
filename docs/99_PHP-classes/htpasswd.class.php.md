@@ -25,6 +25,7 @@ generator: Axels php-classdoc; https://github.com/axelhahn/php-classdoc
  ----------------------------------------------------------------------
  2025-07-18  initial version
  2025-07-21  v1.0
+ 2025-07-23  v1.1  update phpdoc
  ======================================================================
 
 ```
@@ -57,7 +58,7 @@ Add a new user in htpasswd file.
  - if user already exists
  - writing .htpasswd file failed
 
-Line [194](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L194) (14 lines)
+Line [198](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L198) (14 lines)
 
 **Return**: `bool`
 
@@ -88,7 +89,7 @@ Check if a given username exists
  It returns true if successful.
  It returns false if the user does not exist.
 
-Line [217](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L217) (5 lines)
+Line [221](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L221) (5 lines)
 
 **Return**: `bool`
 
@@ -101,8 +102,10 @@ Line [217](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class
 ### 🔹 public generateContent()
 
 Generate content for full htpasswd file
+ This method is used internally in the _saveFile() method.
+ You can use this to render a preview of the generated file.
 
-Line [130](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L130) (10 lines)
+Line [133](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L133) (10 lines)
 
 **Return**: `string`
 
@@ -113,7 +116,7 @@ Line [130](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class
 List all users as array.
  You get the <username> as key. The value is a hash with key "pwhash"
 
-Line [229](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L229) (5 lines)
+Line [233](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L233) (5 lines)
 
 **Return**: `array`
 
@@ -127,7 +130,7 @@ Remove an existing user
  - if user doesn't exist
  - writing .htpasswd file failed
 
-Line [245](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L245) (11 lines)
+Line [249](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L249) (11 lines)
 
 **Return**: `bool`
 
@@ -141,7 +144,7 @@ Line [245](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class
 
 Set full path of htpasswd file. If it exists its users will be parsed.
 
-Line [156](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L156) (11 lines)
+Line [160](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L160) (11 lines)
 
 **Return**: `void`
 
@@ -160,7 +163,7 @@ Update password of an existing user
  - if given old password doesn't match (old password is optional)
  - writing .htpasswd file failed
 
-Line [270](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L270) (25 lines)
+Line [274](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L274) (25 lines)
 
 **Return**: `bool`
 
@@ -180,7 +183,7 @@ Verify password of an existing user
  - if user doens't exist
  - given password doesn't match
 
-Line [307](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L307) (15 lines)
+Line [311](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L311) (15 lines)
 
 **Return**: `bool`
 
