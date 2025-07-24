@@ -24,6 +24,7 @@ namespace axelhahn;
  * 2025-07-19  initial version
  * 2025-07-21  v1.0  add flag nn list()
  * 2025-07-23  v1.1  update phpdoc
+ * 2025-07-24  v1.2  add method getFile()
  * ======================================================================
  */
 class htgroup
@@ -113,7 +114,7 @@ class htgroup
         $this->aGroups = [];
         if (file_exists($this->sHtGroupFile)) {
             $this->_wd(__METHOD__ . ": file '$this->sHtGroupFile' exists - reading it");
-            foreach (file($this->sHtGroupFile) as $line) {
+            foreach (file($this->sHtGroupFile)??[] as $line) {
                 $aTmp = explode(":", $line);
                 $aUsers = array_filter(explode(' ', $aTmp[1]));
 
@@ -170,6 +171,15 @@ class htgroup
         } else {
             $this->_wd(__METHOD__ . ": This is the same file that is already loaded.");
         }
+    }
+
+    /**
+     * Get current htgroup file
+     * @return string
+     */
+    public function getFile(): string
+    {
+        return $this->sHtGroupFile;
     }
 
     // ----------------------------------------------------------------------

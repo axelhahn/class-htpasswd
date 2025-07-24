@@ -22,6 +22,7 @@ namespace axelhahn;
  * 2025-07-18  initial version
  * 2025-07-21  v1.0
  * 2025-07-23  v1.1  update phpdoc
+ * 2025-07-24  v1.2  add method getFile()
  * ======================================================================
  */
 class htpasswd
@@ -110,7 +111,7 @@ class htpasswd
         $this->aItems = [];
         if (file_exists($this->sHtPasswdFile)) {
             $this->_wd(__METHOD__ . ": file '$this->sHtPasswdFile' exists - reading it");
-            foreach (file($this->sHtPasswdFile) as $line) {
+            foreach (file($this->sHtPasswdFile)??[] as $line) {
                 $aTmp = explode(":", $line);
                 $this->aItems[$aTmp[0]] = [
                     'pwhash' => $aTmp[1],
@@ -167,6 +168,15 @@ class htpasswd
         } else {
             $this->_wd(__METHOD__ . ": This is the same file that is already loaded.");
         }
+    }
+
+    /**
+     * Get current htpasswd file
+     * @return string
+     */
+    public function getFile(): string
+    {
+        return $this->sHtPasswdFile;
     }
 
     // ----------------------------------------------------------------------
