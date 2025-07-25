@@ -25,6 +25,7 @@ namespace axelhahn;
  * 2025-07-21  v1.0  add flag nn list()
  * 2025-07-23  v1.1  update phpdoc
  * 2025-07-24  v1.2  add method getFile()
+ * 2025-07-25  v1.3  fix readFile(); sort groups before saving
  * ======================================================================
  */
 class htgroup
@@ -115,10 +116,12 @@ class htgroup
         if (file_exists($this->sHtGroupFile)) {
             $this->_wd(__METHOD__ . ": file '$this->sHtGroupFile' exists - reading it");
             foreach (file($this->sHtGroupFile)??[] as $line) {
+                $line = trim($line);
                 $aTmp = explode(":", $line);
                 $aUsers = array_filter(explode(' ', $aTmp[1]));
-
-                $this->aGroups[$aTmp[0]] = $aUsers;
+                if(count($aTmp) > 1) {                    
+                    $this->aGroups[$aTmp[0]] = $aUsers;
+                }
             }
             ;
             $this->_wd(__METHOD__ . ": found " . count($this->aGroups) . " group(s).");
@@ -139,6 +142,7 @@ class htgroup
         $this->_wd(__METHOD__ . "()");
         $sContent = '';
         $this->_wd(__METHOD__ . ": adding " . count($this->aGroups) . " group(s) ...");
+        ksort($this->aGroups);
         foreach ($this->aGroups as $sGroup => $aItem) {
             $sContent .= $sGroup . ": " . implode(" ", $aItem) . "\n";
         }

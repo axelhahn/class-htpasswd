@@ -23,6 +23,7 @@ namespace axelhahn;
  * 2025-07-21  v1.0
  * 2025-07-23  v1.1  update phpdoc
  * 2025-07-24  v1.2  add method getFile()
+ * 2025-07-25  v1.3  fix readFile(); sort users before saving
  * ======================================================================
  */
 class htpasswd
@@ -112,10 +113,13 @@ class htpasswd
         if (file_exists($this->sHtPasswdFile)) {
             $this->_wd(__METHOD__ . ": file '$this->sHtPasswdFile' exists - reading it");
             foreach (file($this->sHtPasswdFile)??[] as $line) {
+                $line = trim($line);
                 $aTmp = explode(":", $line);
-                $this->aItems[$aTmp[0]] = [
-                    'pwhash' => $aTmp[1],
-                ];
+                if(count($aTmp) > 1) {                    
+                    $this->aItems[$aTmp[0]] = [
+                        'pwhash' => $aTmp[1],
+                    ];
+                }
             }
             ;
             $this->_wd(__METHOD__ . ": found " . count($this->aItems) . " user(s).");
@@ -136,6 +140,7 @@ class htpasswd
         $this->_wd(__METHOD__ . "()");
         $sContent = '';
         $this->_wd(__METHOD__ . ": adding " . count($this->aItems) . " user(s) ...");
+        ksort($this->aItems);
         foreach ($this->aItems as $sUser => $aItem) {
             $sContent .= $sUser . ":" . $aItem['pwhash'] . "\n";
         }
