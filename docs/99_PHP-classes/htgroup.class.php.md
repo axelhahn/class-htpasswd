@@ -29,6 +29,7 @@ generator: Axels php-classdoc; https://github.com/axelhahn/php-classdoc
  2025-07-21  v1.0  add flag nn list()
  2025-07-23  v1.1  update phpdoc
  2025-07-24  v1.2  add method getFile()
+ 2025-07-25  v1.3  fix readFile(); sort groups before saving
  ======================================================================
 
 ```
@@ -43,7 +44,7 @@ generator: Axels php-classdoc; https://github.com/axelhahn/php-classdoc
 
 Constructor
 
-Line [65](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L65) (6 lines)
+Line [66](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L66) (6 lines)
 
 **Return**: `void`
 
@@ -61,7 +62,7 @@ Add a new group in htgroup file.
  - if group already exists
  - writing .htgroup file failed
 
-Line [210](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L210) (12 lines)
+Line [214](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L214) (12 lines)
 
 **Return**: `bool`
 
@@ -75,7 +76,7 @@ Line [210](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.
 
 Enable or disable debug mode
 
-Line [96](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L96) (4 lines)
+Line [97](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L97) (4 lines)
 
 **Return**: `void`
 
@@ -91,7 +92,7 @@ Check if a given group name exists
  It returns true if successful.
  It returns false if the group does not exist.
 
-Line [231](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L231) (5 lines)
+Line [235](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L235) (5 lines)
 
 **Return**: `bool`
 
@@ -107,7 +108,7 @@ Generate content for full htgroup file
  This method is used internally in the _saveFile() method.
  You can use this to render a preview of the generated file.
 
-Line [137](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L137) (10 lines)
+Line [140](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L140) (11 lines)
 
 **Return**: `string`
 
@@ -117,7 +118,7 @@ Line [137](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.
 
 Get current htgroup file
 
-Line [180](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L180) (4 lines)
+Line [184](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L184) (4 lines)
 
 **Return**: `string`
 
@@ -129,7 +130,7 @@ List all groups as array.
  with setting flag to show groupmembers you get an array
  with <group> as key and value is an array of groupmembers
 
-Line [245](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L245) (5 lines)
+Line [249](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L249) (5 lines)
 
 **Return**: `array`
 
@@ -146,7 +147,7 @@ List members of a given existing group
  - an array of groupmembers if successful
  - false if group doesn't exist
 
-Line [260](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L260) (11 lines)
+Line [264](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L264) (11 lines)
 
 **Return**: `array|bool`
 
@@ -164,7 +165,7 @@ Remove an existing group
  - if group doesn't exist
  - writing .htgroup file failed
 
-Line [282](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L282) (11 lines)
+Line [286](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L286) (11 lines)
 
 **Return**: `bool`
 
@@ -182,7 +183,7 @@ Rename a group
  - if group doesn't exist
  - writing .htgroup file failed
 
-Line [305](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L305) (12 lines)
+Line [309](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L309) (12 lines)
 
 **Return**: `bool`
 
@@ -197,7 +198,7 @@ Line [305](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.
 
 Set full path of htgroup file. If it exists its groups will be parsed.
 
-Line [164](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L164) (11 lines)
+Line [168](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L168) (11 lines)
 
 **Return**: `void`
 
@@ -215,7 +216,7 @@ Add a user to an existing group
  - if group doesn't exist
  - writing .htgroup file failed
 
-Line [333](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L333) (10 lines)
+Line [337](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L337) (10 lines)
 
 **Return**: `bool`
 
@@ -235,7 +236,7 @@ Add a user to an existing group
  - if the user in the given group doesn't exist
  - writing .htgroup file failed
 
-Line [356](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L356) (16 lines)
+Line [360](https://github.com/axelhahn/php-htpasswd/tree/main/src/htgroup.class.php#L360) (16 lines)
 
 **Return**: `bool`
 
