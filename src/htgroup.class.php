@@ -118,8 +118,8 @@ class htgroup
             foreach (file($this->sHtGroupFile)??[] as $line) {
                 $line = trim($line);
                 $aTmp = explode(":", $line);
-                $aUsers = array_filter(explode(' ', $aTmp[1]));
                 if(count($aTmp) > 1) {                    
+                    $aUsers = array_filter(explode(' ', $aTmp[1]));
                     $this->aGroups[$aTmp[0]] = $aUsers;
                 }
             }
