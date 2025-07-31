@@ -28,6 +28,7 @@ generator: Axels php-classdoc; https://github.com/axelhahn/php-classdoc
  2025-07-23  v1.1  update phpdoc
  2025-07-24  v1.2  add method getFile()
  2025-07-25  v1.3  fix readFile(); sort users before saving
+ 2025-08-01  v1.4  add a comment in 1st line; ignore lines starting with # or ;
  ======================================================================
 
 ```
@@ -42,7 +43,7 @@ generator: Axels php-classdoc; https://github.com/axelhahn/php-classdoc
 
 Constructor
 
-Line [63](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L63) (6 lines)
+Line [64](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L64) (6 lines)
 
 **Return**: `void`
 
@@ -60,7 +61,7 @@ Add a new user in htpasswd file.
  - if user already exists
  - writing .htpasswd file failed
 
-Line [213](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L213) (14 lines)
+Line [217](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L217) (14 lines)
 
 **Return**: `bool`
 
@@ -75,7 +76,7 @@ Line [213](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class
 
 Enable or disable debug mode
 
-Line [94](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L94) (4 lines)
+Line [95](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L95) (4 lines)
 
 **Return**: `void`
 
@@ -91,7 +92,7 @@ Check if a given username exists
  It returns true if successful.
  It returns false if the user does not exist.
 
-Line [236](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L236) (5 lines)
+Line [240](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L240) (5 lines)
 
 **Return**: `bool`
 
@@ -107,7 +108,7 @@ Generate content for full htpasswd file
  This method is used internally in the _saveFile() method.
  You can use this to render a preview of the generated file.
 
-Line [138](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L138) (11 lines)
+Line [142](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L142) (11 lines)
 
 **Return**: `string`
 
@@ -117,7 +118,7 @@ Line [138](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class
 
 Get current htpasswd file
 
-Line [182](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L182) (4 lines)
+Line [186](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L186) (4 lines)
 
 **Return**: `string`
 
@@ -128,7 +129,7 @@ Line [182](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class
 List all users as array.
  You get the <username> as key. The value is a hash with key "pwhash"
 
-Line [248](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L248) (5 lines)
+Line [252](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L252) (5 lines)
 
 **Return**: `array`
 
@@ -142,7 +143,7 @@ Remove an existing user
  - if user doesn't exist
  - writing .htpasswd file failed
 
-Line [264](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L264) (11 lines)
+Line [268](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L268) (11 lines)
 
 **Return**: `bool`
 
@@ -156,7 +157,7 @@ Line [264](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class
 
 Set full path of htpasswd file. If it exists its users will be parsed.
 
-Line [166](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L166) (11 lines)
+Line [170](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L170) (11 lines)
 
 **Return**: `void`
 
@@ -175,7 +176,7 @@ Update password of an existing user
  - if given old password doesn't match (old password is optional)
  - writing .htpasswd file failed
 
-Line [289](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L289) (25 lines)
+Line [293](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L293) (25 lines)
 
 **Return**: `bool`
 
@@ -195,7 +196,7 @@ Verify password of an existing user
  - if user doens't exist
  - given password doesn't match
 
-Line [326](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L326) (15 lines)
+Line [330](https://github.com/axelhahn/php-htpasswd/tree/main/src/htpasswd.class.php#L330) (15 lines)
 
 **Return**: `bool`
 
