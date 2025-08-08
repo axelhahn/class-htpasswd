@@ -27,6 +27,7 @@ echo ($oHtpasswd->add('anton','anton123') ? '✅ true' : '❌ false') .PHP_EOL;
 
 section("This should be stopped: add the same user again");
 echo ($oHtpasswd->add('anton','amton123') ? '❌ true' : '✅ false') .PHP_EOL;
+echo "\$oHtpasswd->error() returns: " . $oHtpasswd->error() .PHP_EOL;
 
 section("Content of '$oHtpasswdpasswdfile'");
 echo file_get_contents($oHtpasswdpasswdfile);
@@ -51,9 +52,11 @@ echo ($oHtpasswd->verifyPassword('anton', 'anton123') ? '✅ true' : '❌ false'
 
 section("Verify a wrong password");
 echo ($oHtpasswd->verifyPassword('anton', 'wrongpassword') ? '❌ true' : '✅ false') .PHP_EOL;
+echo "\$oHtpasswd->error() returns: " . $oHtpasswd->error() .PHP_EOL;
 
 section("Verify a wrong password of a non existing user");
 echo ($oHtpasswd->verifyPassword('fred', 'wrongpassword') ? '❌ true' : '✅ false') .PHP_EOL;
+echo "\$oHtpasswd->error() returns: " . $oHtpasswd->error() .PHP_EOL;
 
 section("Remove existing user 'anton'");
 echo ($oHtpasswd->remove('anton') ? '✅ true' : '❌ false') .PHP_EOL;
@@ -63,6 +66,7 @@ echo file_get_contents($oHtpasswdpasswdfile);
 
 section("Remove non existing user 'fred'");
 echo ($oHtpasswd->remove('fred') ? '❌ true' : '✅ false') .PHP_EOL;
+echo "\$oHtpasswd->error() returns: " . $oHtpasswd->error() .PHP_EOL;
 
 section("Cleanup & exit");
 unlink($oHtpasswdpasswdfile);

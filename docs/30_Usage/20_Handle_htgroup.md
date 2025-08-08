@@ -122,6 +122,14 @@ Array
 )
 ```
 
+### Last error
+
+Actons return success as bool. If it fails you can get the last error message. This is useful for debugging. Do not show the error message to the user.
+
+```php
+echo $oHtpasswd->error();
+```
+
 ### Debugging
 
 With a bool value you can enable or disable debug mode. 
@@ -144,7 +152,7 @@ DEBUG: axelhahn\htgroup::generateContent: adding 1 group(s) ...
 
 ### Set a new file name
 
-Yo can set a new full path of the .htpasswd file. It is not required that it exists. With using the 1st writing action the file will be created.
+You can set a new full path of the .htpasswd file. It is not required that it exists but the directory must be writable. With using the 1st writing action the file will be created.
 
 ```php
 $oHtgroup->setFile('/var/www/website_2/.htgroup');

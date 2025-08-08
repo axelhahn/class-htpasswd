@@ -33,7 +33,7 @@ echo file_get_contents($oHtgroupgroupfile);
 
 section("This should be stopped: add the same user again");
 echo ($oHtgroup->add('admins') ? '❌ true' : '✅ false') .PHP_EOL;
-
+echo "\$oHtgroup->error() returns: " . $oHtgroup->error() .PHP_EOL;
 
 section("list groups");
 print_r($oHtgroup->list());
@@ -77,6 +77,7 @@ echo file_get_contents($oHtgroupgroupfile);
 
 section("Remove non existing user 'fred' from 'admins':");
 echo ($oHtgroup->userRemove('fred', 'admins')  ? '❌ true' : '✅ false') .PHP_EOL;
+echo "\$oHtgroup->error() returns: " . $oHtgroup->error() .PHP_EOL;
 
 section("Cleanup & exit");
 unlink($oHtgroupgroupfile);

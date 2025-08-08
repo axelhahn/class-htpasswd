@@ -85,6 +85,18 @@ if ($oHtpasswd->verifyPassword('anton','antons-secret-password')){
 }
 ```
 
+### Last error
+
+Actons return success as bool. If it fails you can get the last error message. This is useful for debugging. Do not show the error message to the user.
+
+```php
+echo $oHtpasswd->error();
+```
+
+```txt
+axelhahn\htpasswd::add: Cannot add user 'anton', user already exists
+```
+
 ### Debugging
 
 With a bool value you can enable or disable debug mode. 
@@ -113,7 +125,7 @@ DEBUG: axelhahn\htpasswd::add: Cannot add user 'anton', user already exists
 
 ### Set a new file name
 
-Yo can set a new full path of the .htpasswd file. It is not required that it exists. With using the 1st writing action the file will be created.
+You can set a new full path of the .htpasswd file. It is not required that it exists, but the given directory must be writable. With using the 1st writing action the file will be created.
 
 ```php
 $oHtpasswd->setFile('/var/www/website_2/.htpasswd');
