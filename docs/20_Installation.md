@@ -28,6 +28,7 @@ cd [webroot]/vendor/
 mkdir -p php-htpasswd/src
 cd php-htpasswd/src
 
+wget https://raw.githubusercontent.com/axelhahn/php-htpasswd/refs/heads/main/src/ht-base.class.php
 wget https://raw.githubusercontent.com/axelhahn/php-htpasswd/refs/heads/main/src/htpasswd.class.php
 wget https://raw.githubusercontent.com/axelhahn/php-htpasswd/refs/heads/main/src/htgroup.class.php
 ```
